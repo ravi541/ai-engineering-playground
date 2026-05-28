@@ -3,9 +3,10 @@ import streamlit as st
 from gtts import gTTS
 from deep_translator import GoogleTranslator
 import uuid
+import speech_recognition as sr
 
 # ------------------------------------------------
-# STREAMLIT PAGE CONFIG
+# PAGE CONFIG
 # ------------------------------------------------
 
 st.set_page_config(
@@ -18,17 +19,17 @@ st.set_page_config(
 # SESSION STATE
 # ------------------------------------------------
 
-# Conversation ID
 if "conversation_id" not in st.session_state:
     st.session_state.conversation_id = str(uuid.uuid4())
 
-# Chat history
 if "chat_history" not in st.session_state:
     st.session_state.chat_history = []
 
-# Latest AI response
 if "latest_response" not in st.session_state:
     st.session_state.latest_response = ""
+
+if "input_text" not in st.session_state:
+    st.session_state.input_text = ""
 
 # ------------------------------------------------
 # TITLE
@@ -36,7 +37,9 @@ if "latest_response" not in st.session_state:
 
 st.title("🤖 AI Multilingual Voice Assistant")
 
-st.write(f"### 🆔 Conversation ID: {st.session_state.conversation_id}")
+st.write(
+    f"### 🆔 Conversation ID: {st.session_state.conversation_id}"
+)
 
 # ------------------------------------------------
 # SIDEBAR
@@ -44,12 +47,16 @@ st.write(f"### 🆔 Conversation ID: {st.session_state.conversation_id}")
 
 st.sidebar.title("⚙️ Controls")
 
-# New chat button
+# ------------------------------------------------
+# NEW CHAT
+# ------------------------------------------------
+
 if st.sidebar.button("🆕 New Conversation"):
 
     st.session_state.conversation_id = str(uuid.uuid4())
     st.session_state.chat_history = []
     st.session_state.latest_response = ""
+    st.session_state.input_text = ""
 
     st.rerun()
 
@@ -86,10 +93,59 @@ selected_language = st.sidebar.selectbox(
 )
 
 # ------------------------------------------------
+# SPEECH TO TEXT
+# ------------------------------------------------
+
+st.sidebar.divider()
+
+st.sidebar.subheader("🎤 Voice Input")
+
+if st.sidebar.button("🎙️ Start Listening"):
+
+    recognizer = sr.Recognizer()
+
+    try:
+
+        with sr.Microphone() as source:
+
+            st.sidebar.info("🎤 Listening... Speak now")
+
+            audio = recognizer.listen(source)
+
+            st.sidebar.info("🧠 Recognizing speech...")
+
+            voice_text = recognizer.recognize_google(audio)
+
+            st.sidebar.success(
+                "✅ Voice captured successfully!"
+            )
+
+            st.sidebar.write(
+                f"🗣️ You said: {voice_text}"
+            )
+
+            # Save into session state
+            st.session_state.input_text = voice_text
+
+            # Rerun app
+            st.rerun()
+
+    except Exception as e:
+
+        st.sidebar.error(f"❌ Error: {str(e)}")
+
+# ------------------------------------------------
 # USER INPUT
 # ------------------------------------------------
 
 text = st.chat_input("Ask something...")
+
+# Voice input processing
+if st.session_state.input_text:
+
+    text = st.session_state.input_text
+
+    st.session_state.input_text = ""
 
 # ------------------------------------------------
 # AI RESPONSE GENERATION
@@ -97,13 +153,13 @@ text = st.chat_input("Ask something...")
 
 if text:
 
-    # Add user message to history
+    # Add user message
     st.session_state.chat_history.append({
         "role": "user",
         "content": text
     })
 
-    with st.spinner("Generating AI response..."):
+    with st.spinner("🤖 Generating AI response..."):
 
         response = ollama.chat(
             model='gemma3:270m',
@@ -115,7 +171,7 @@ if text:
         # Save latest response
         st.session_state.latest_response = ai_response
 
-        # Add assistant response to history
+        # Add assistant response
         st.session_state.chat_history.append({
             "role": "assistant",
             "content": ai_response
@@ -132,11 +188,13 @@ for message in st.session_state.chat_history:
     if message["role"] == "user":
 
         with st.chat_message("user"):
+
             st.write(message["content"])
 
     else:
 
         with st.chat_message("assistant"):
+
             st.write(message["content"])
 
 # ------------------------------------------------
@@ -162,10 +220,19 @@ if st.session_state.latest_response:
             translated_text = GoogleTranslator(
                 source='auto',
                 target=lang_code
-            ).translate(st.session_state.latest_response)
+            ).translate(
+                st.session_state.latest_response
+            )
 
         else:
-            translated_text = st.session_state.latest_response
+
+            translated_text = (
+                st.session_state.latest_response
+            )
+
+        # ----------------------------------------
+        # SHOW TRANSLATED RESPONSE
+        # ----------------------------------------
 
         st.subheader("🌍 Translated Response")
 
@@ -188,14 +255,19 @@ if st.session_state.latest_response:
         # PLAY AUDIO
         # ----------------------------------------
 
-        audio_bytes = open(audio_file, "rb").read()
+        audio_bytes = open(
+            audio_file,
+            "rb"
+        ).read()
 
         st.audio(
             audio_bytes,
             format="audio/mp3"
         )
 
-        st.success("✅ Voice generated successfully!")
+        st.success(
+            "✅ Voice generated successfully!"
+        )
 
 # ------------------------------------------------
 # SIDEBAR HISTORY
@@ -205,10 +277,14 @@ st.sidebar.divider()
 
 st.sidebar.subheader("📝 Chat History")
 
-for index, msg in enumerate(st.session_state.chat_history):
+for index, msg in enumerate(
+    st.session_state.chat_history
+):
 
     role = msg["role"]
 
     content = msg["content"][:40]
 
-    st.sidebar.write(f"{index+1}. {role}: {content}...")
+    st.sidebar.write(
+        f"{index+1}. {role}: {content}..."
+    )
