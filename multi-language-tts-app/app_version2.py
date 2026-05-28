@@ -37,9 +37,9 @@ if "input_text" not in st.session_state:
 
 st.title("🤖 AI Multilingual Voice Assistant")
 
-st.write(
-    f"### 🆔 Conversation ID: {st.session_state.conversation_id}"
-)
+# st.write(
+#     f"### 🆔 Conversation ID: {st.session_state.conversation_id}"
+# )
 
 # ------------------------------------------------
 # SIDEBAR
