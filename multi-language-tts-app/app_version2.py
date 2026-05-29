@@ -9,8 +9,9 @@ import speech_recognition as sr
 # PAGE CONFIG
 # ------------------------------------------------
 
+
 st.set_page_config(
-    page_title="AI Multilingual Voice Assistant",
+    page_title="AI Multilingual Voice Assistant ",
     page_icon="🤖",
     layout="wide"
 )
@@ -35,7 +36,7 @@ if "input_text" not in st.session_state:
 # TITLE
 # ------------------------------------------------
 
-st.title("🤖 AI Multilingual Voice Assistant")
+st.title(" AI Multilingual Voice Assistant")
 
 # st.write(
 #     f"### 🆔 Conversation ID: {st.session_state.conversation_id}"
@@ -159,7 +160,7 @@ if text:
         "content": text
     })
 
-    with st.spinner("🤖 Generating AI response..."):
+    with st.spinner("Generating AI response..."):
 
         response = ollama.chat(
             model='gemma3:270m',
@@ -181,7 +182,7 @@ if text:
 # DISPLAY CHAT HISTORY
 # ------------------------------------------------
 
-st.header("💬 Conversation")
+st.header("Conversation")
 
 for message in st.session_state.chat_history:
 
