@@ -5,11 +5,11 @@ from ollama import Client
 client = Client(host="http://localhost:11434")
 
 st.set_page_config(
-    page_title="Custom LLM model by Prakash Senapati - Ollama",
+    page_title="Custom LLM model by Ravi teja - Ollama",
     layout="centered"
 )
 
-st.title("Mr. Prakash Senapati - Ollama App")
+st.title("Mr. Ravi teja - Ollama App")
 
 prompt = st.text_area("Enter your prompt:", height=200)
 
