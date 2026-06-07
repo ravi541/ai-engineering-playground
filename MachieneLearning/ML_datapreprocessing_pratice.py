@@ -5,6 +5,8 @@ Created on Sat Jun  6 15:01:49 2026
 @author: Raviteja
 """
 
+# Open in Spyder
+
 import numpy as np #array
 
 import matplotlib.pyplot as plt
