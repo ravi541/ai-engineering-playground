@@ -152,7 +152,13 @@ print("R_square",r_square)
 
 
 
+# save the trained model to disk
 
+import pickle
+filename='linear_regression_model.pkl'
+with open(filename,'wb') as file:
+    pickle.dump(regressor,file)
+print("Model has been pickled and saved as linear_regression_model.pkl")
 
 
 
