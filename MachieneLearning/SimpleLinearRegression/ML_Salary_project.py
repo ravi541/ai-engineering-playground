@@ -5,7 +5,6 @@ Created on Sun Jun  7 11:52:22 2026
 @author: Raviteja
 """
 
-# Open in spyder
 
 import numpy as np
 import pandas as pd
@@ -159,23 +158,3 @@ filename='linear_regression_model.pkl'
 with open(filename,'wb') as file:
     pickle.dump(regressor,file)
 print("Model has been pickled and saved as linear_regression_model.pkl")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
