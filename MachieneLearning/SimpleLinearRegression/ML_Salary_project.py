@@ -119,3 +119,57 @@ dataset['Salary'].skew()
 dataset.sem()
 
 dataset['Salary'].sem()
+
+# Z score
+# for calculating z scire we have to import scipy 
+import scipy.stats as stats
+
+dataset.apply(stats.zscore)
+
+stats.zscore(dataset['Salary'])
+
+# Sum of sqaures of regression(SSR)
+
+# ANOVA
+
+y_mean = np.mean(y)
+SSR = np.sum((y_pred-y_mean)**2)
+print("SSR",SSR)
+
+
+y=y[0:6]
+SSE=np.sum((y-y_pred)**2)
+print("SSE",SSE)
+
+mean_total = np.mean(dataset.values)
+#here dataset.to_numpy() will convert pandas dataframe
+SST = np.sum((dataset.values-mean_total)**2)
+print("SST",SST)
+
+
+r_square = 1 - (SSR/SST)
+print("R_square",r_square)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
