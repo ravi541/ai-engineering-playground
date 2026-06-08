@@ -1,7 +1,6 @@
 	
 import streamlit as st
 import pickle
-import numpy as np
 
 # Load the saved model
 model = pickle.load(open(r'C:\Users\Raviteja\AVSCODE\ai-engineering-playground\MachieneLearning\SimpleLinearRegression\linear_regression_model.pkl', 'rb'))
