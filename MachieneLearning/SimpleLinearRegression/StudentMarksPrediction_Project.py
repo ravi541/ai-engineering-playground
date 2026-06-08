@@ -78,4 +78,20 @@ y_pred
 
 pd.DataFrame(np.c_[X_test,y_test,y_pred],columns=["study_hours","student_marks_original","student_marks_predicted"])
 
-# Fine tune your model
+# Fine tune your model 
+
+lr.score(X_test,y_test) #variance
+
+lr.score(X_train,y_train) #bias
+
+plt.scatter(X_test,y_test)
+plt.plot(X_train,lr.predict(X_train),color='r')
+
+import joblib
+joblib.dump(lr, "StudentMarks_prediction.pkl")
+
+model= joblib.load("StudentMarks_predict.pkl")
+
+
+
+
