@@ -20,3 +20,5 @@ y_pred = regressor.predict(X_test)
 
 c= regressor.intercept_
 m=regressor.coef_
+
+x=np.append(arr=np.full((50,1),42467).astype(int), values=x,axis=1)
