@@ -71,12 +71,31 @@ regressor_OLS.summary()
 
 import statsmodels.api as sm
 X_opt=x[:,[0,1]]#ignoring 6 because if 4 r 5 any one is 1 then it is 0
-
 #OrdinayLeastSquares
 regressor_OLS= sm.OLS(endog=y,exog=X_opt).fit()
 regressor_OLS.summary()
 
+# Why Are We Removing Highest P-Value?
 
+# Goal:
+
+# Keep only important features
+
+# Remove useless features
+# What is P-Value?
+
+# P-value tells:
+
+# How important is a feature in predicting Y?
+# Rule
+
+# Usually:
+
+# P-value < 0.05
+# Important Feature ✅
+
+# P-value > 0.05
+# Not Important ❌
 
 
 
