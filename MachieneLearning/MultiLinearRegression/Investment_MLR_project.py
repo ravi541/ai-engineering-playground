@@ -23,3 +23,79 @@ m=regressor.coef_
 print(m)
 x=np.append(arr=np.full((50,1),42467).astype(int), values=x,axis=1)
 
+
+#Which attribute need to among 6 attriubute
+
+import statsmodels.api as sm
+X_opt=x[:,[0,1,2,3,4,5]]#ignoring 6 because if 4 r 5 any one is 1 then it is 0
+
+#OrdinayLeastSquares
+regressor_OLS= sm.OLS(endog=y,exog=X_opt).fit()
+regressor_OLS.summary()
+
+#we have x4 as highest p value so ignoring it this is backward elimination
+
+import statsmodels.api as sm
+X_opt=x[:,[0,1,2,3,5]]#ignoring 6 because if 4 r 5 any one is 1 then it is 0
+
+#OrdinayLeastSquares
+regressor_OLS= sm.OLS(endog=y,exog=X_opt).fit()
+regressor_OLS.summary()
+
+
+
+import statsmodels.api as sm
+X_opt=x[:,[0,1,2,3]]#ignoring 6 because if 4 r 5 any one is 1 then it is 0
+
+#OrdinayLeastSquares
+regressor_OLS= sm.OLS(endog=y,exog=X_opt).fit()
+regressor_OLS.summary()
+
+
+import statsmodels.api as sm
+X_opt=x[:,[0,1,2,3]]#ignoring 6 because if 4 r 5 any one is 1 then it is 0
+
+#OrdinayLeastSquares
+regressor_OLS= sm.OLS(endog=y,exog=X_opt).fit()
+regressor_OLS.summary()
+
+
+
+import statsmodels.api as sm
+X_opt=x[:,[0,1,3]]#ignoring 6 because if 4 r 5 any one is 1 then it is 0
+
+#OrdinayLeastSquares
+regressor_OLS= sm.OLS(endog=y,exog=X_opt).fit()
+regressor_OLS.summary()
+
+
+import statsmodels.api as sm
+X_opt=x[:,[0,1]]#ignoring 6 because if 4 r 5 any one is 1 then it is 0
+
+#OrdinayLeastSquares
+regressor_OLS= sm.OLS(endog=y,exog=X_opt).fit()
+regressor_OLS.summary()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
