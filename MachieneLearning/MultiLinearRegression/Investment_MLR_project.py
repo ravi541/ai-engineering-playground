@@ -95,8 +95,8 @@ regressor_OLS.summary()
 # Important Feature ✅
 
 # P-value > 0.05
-# Not Important ❌
-
+# Not Important 
+# This is backward elimination process
 
 
 
