@@ -8,6 +8,7 @@ dataset=pd.read_csv(r"C:\Users\Raviteja\AVSCODE\ai-engineering-playground\Machie
 x=dataset.iloc[:,:-1]
 y=dataset.iloc[:,4]
 
+#get dummies
 x=pd.get_dummies(x,dtype=int)
 
 from sklearn.model_selection import train_test_split
