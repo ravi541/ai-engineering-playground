@@ -18,6 +18,7 @@ from sklearn.linear_model import LinearRegression
 regressor = LinearRegression()
 regressor.fit(X_train,y_train)
 
+#predict
 y_pred = regressor.predict(X_test)
 
 c= regressor.intercept_
