@@ -24,3 +24,43 @@ linear_model_prediction=lin_reg.predict([[6.5]])
 print(linear_model_prediction)
 
 # Polynomial Model
+
+from sklearn.preprocessing import PolynomialFeatures
+poly_reg = PolynomialFeatures(degree=6) #change degree
+
+X_poly = poly_reg.fit_transform(X)
+
+poly_reg.fit(X_poly,y)
+
+lin_reg2= LinearRegression()
+lin_reg2.fit(X_poly, y)
+
+
+plt.scatter(X, y, color='red')
+plt.plot(X,lin_reg2.predict(poly_reg.fit_transform(X)),color='blue')
+plt.title('accept or reject Polynomial Regression graph')
+plt.xlabel('Postion level')
+plt.ylabel('Salary')
+plt.show()
+
+poly_model_pred = lin_reg2.predict(poly_reg.fit_transform([[6.5]]))
+print(poly_model_pred)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
