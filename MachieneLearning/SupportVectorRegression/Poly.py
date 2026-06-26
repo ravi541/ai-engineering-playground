@@ -47,8 +47,17 @@ poly_model_pred = lin_reg2.predict(poly_reg.fit_transform([[6.5]]))
 print(poly_model_pred)
 
 
- 
+# Support vector regression
+# SVR
+#Continue same program on SVR
 
+from sklearn.svm import SVR
+svr_reg= SVR(kernel='poly',degree=4,gamma='auto') # types of kernal rbf,poly,linear,sigmoid
+svr_reg.fit(X, y)
+
+
+svr_pred = svr_reg.predict([[6.5]])
+print(svr_pred)
 
 
 
