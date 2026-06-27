@@ -26,7 +26,7 @@ print(linear_model_prediction)
 # Polynomial Model
 
 from sklearn.preprocessing import PolynomialFeatures
-poly_reg = PolynomialFeatures(degree=6) #change degree to get more accurate data
+poly_reg = PolynomialFeatures(degree=5) #change degree to get more accurate data
 
 X_poly = poly_reg.fit_transform(X)
 
@@ -57,7 +57,16 @@ svr_reg.fit(X, y)
 
 
 svr_pred = svr_reg.predict([[6.5]])
-print(svr_pred)
+print(svr_pred) # 175.7 score
+
+# K- Nearesr Neighbour Regression
+
+from sklearn.neighbors import KNeighborsRegressor
+knn_reg = KNeighborsRegressor()
+knn_reg.fit(X,y)
+
+knn_pred = knn_reg.predict([[6.5]])
+print(knn_pred) # 168.00
 
 
 
