@@ -70,6 +70,12 @@ print(knn_pred) # 168.00
 
 # DecisionTreeAlgorithm
 
+from sklearn.tree import DecisionTreeRegressor
+dt_reg=DecisionTreeRegressor(criterion='poisson',splitter="best", max_depth=3)
+dt_reg.fit(X,y)
+
+dt_pred=dt_reg.predict([[6.5]])
+print(dt_pred) #accuracy is 175k sal for 6.5 years exp person
 
 
 
