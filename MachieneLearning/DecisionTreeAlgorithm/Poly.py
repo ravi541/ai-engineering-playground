@@ -75,7 +75,15 @@ dt_reg=DecisionTreeRegressor(criterion='poisson',splitter="best", max_depth=3)
 dt_reg.fit(X,y)
 
 dt_pred=dt_reg.predict([[6.5]])
-print(dt_pred) #accuracy is 175k sal for 6.5 years exp person
+print(dt_pred) #accuracy is 175k sal for 6.5 years exp person  
+
+# Random Forest
+from sklearn.ensemble import RandomForestRegressor
+rf_reg=RandomForestRegressor()
+rf_reg.fit(X,y)
+
+rf_pred=rf_reg.predict([[6.5]])
+print(rf_pred)
 
 
 
