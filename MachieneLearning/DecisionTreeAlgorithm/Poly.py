@@ -79,13 +79,19 @@ print(dt_pred) #accuracy is 175k sal for 6.5 years exp person
 
 # Random Forest
 from sklearn.ensemble import RandomForestRegressor
-rf_reg=RandomForestRegressor()
+rf_reg=RandomForestRegressor(n_estimators=30)
 rf_reg.fit(X,y)
 
 rf_pred=rf_reg.predict([[6.5]])
 print(rf_pred)
 
 
+import joblib
+
+# Save the best model
+joblib.dump(dt_reg, "salary_model.pkl")
+
+print("Model saved successfully!")
 
 
 
