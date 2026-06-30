@@ -85,7 +85,7 @@ rf_reg.fit(X,y)
 rf_pred=rf_reg.predict([[6.5]])
 print(rf_pred)
 
-
+#joblib for .pkl file to dump and load the model
 import joblib
 
 # Save the best model
