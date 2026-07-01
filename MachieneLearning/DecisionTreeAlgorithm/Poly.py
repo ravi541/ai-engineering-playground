@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
+import seaborn as sb
 
 dataset = pd.read_csv(r"C:\Users\Raviteja\Downloads\emp_sal.csv")
 
