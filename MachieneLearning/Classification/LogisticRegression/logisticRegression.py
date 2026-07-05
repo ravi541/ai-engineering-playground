@@ -11,11 +11,12 @@ y= dataset.iloc[:,-1].values
 from sklearn.model_selection import train_test_split
 X_train,X_test,y_train,y_test=train_test_split(X,y,test_size=0.2,random_state=0)
 
+'''
 from sklearn.preprocessing import StandardScaler
 sc=StandardScaler()
 X_train = sc.fit_transform(X_train)
 X_test= sc.transform(X_test)
-
+'''
 from sklearn.linear_model import LogisticRegression
 classifier = LogisticRegression()
 classifier.fit(X_train, y_train)
@@ -29,3 +30,9 @@ print(cm)
 from sklearn.metrics import accuracy_score
 ac = accuracy_score(y_test, y_pred)
 print(ac)
+
+bias = classifier.score(X_train, y_train)
+print(bias)
+
+variance = classifier.score( X_test, y_test)
+print(variance)
