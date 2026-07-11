@@ -3,11 +3,11 @@ import cv2
 
 # Load the Haar Cascade for face detection
 face_classifier = cv2.CascadeClassifier(r"C:\Users\Raviteja\AVSCODE\ai-engineering-playground\OPENCV\Haar cascade classifier basic project\haarcascade_frontalface_default.xml")# Load the image
+eye_classifier = cv2.CascadeClassifier(r"C:\Users\Raviteja\AVSCODE\ai-engineering-playground\OPENCV\Haar cascade classifier basic project\haarcascade_eye.xml")
+
+
 image = cv2.imread(r"C:\Users\Raviteja\OneDrive\Desktop\CNN- Happy or Sad\training\sad\2images2.png")
 
-
-
-#image = cv2.imread(r'C:\Users\A3MAX SOFTWARE TECH\Desktop\WORK\2. DATASCIENCE PROJECT\10. Computer vision\Computer-Vision-Tutorial-master\Computer-Vision-Tutorial-master\image_examples\5.jpg')
 
 # Check if the image is loaded correctly
 if image is None:
@@ -25,10 +25,22 @@ if len(faces) == 0:
 else:
     # Draw rectangles around the faces
     for (x, y, w, h) in faces:  # (x, y) is the top-left corner, and (w, h) is the width and height of the face
-        cv2.rectangle(image, (x, y), (x + w, y + h), (127, 0, 255), 2)
+        cv2.rectangle(image, (x, y), (x + w, y + h), (127, 0, 255), 1)
 
+    #Region of interest(ROI) for face
+    roi_gray = gray[y:y + h ,x:x + w]
+    roi_color = image[y:y +h, x:x + w]
+    
+    #detect eyes within in the face region
+    eyes = eye_classifier.detectMultiScale(roi_gray)
+    
+    for (ex, ey, ew, eh) in eyes:  # (x, y) is the top-left corner, and (w, h) is the width and height of the face
+        cv2.rectangle(roi_color, (ex, ey), (ex + ew, ey + eh), (255, 255, 0), 1)
+    
     # Display the output image
     cv2.imshow('Face Detection', image)
     cv2.waitKey(0)  # Wait for a key press to close the window
+    
+    
 # Close all OpenCV windows
 cv2.destroyAllWindows()
