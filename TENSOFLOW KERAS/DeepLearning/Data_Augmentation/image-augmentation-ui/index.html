@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Image Augmentation Studio</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+<div class="container">
+
+<h1>🧠 AI Image Augmentation Studio</h1>
+
+<div class="upload-box">
+
+<input type="file" id="imageUpload" accept="image/*">
+
+</div>
+
+<div class="preview-section">
+
+<div class="card">
+
+<h2>Original Image</h2>
+
+<img id="preview">
+
+</div>
+
+<div class="card">
+
+<h2>Preview</h2>
+
+<div id="previewAugmented">
+
+Waiting...
+
+</div>
+
+</div>
+
+</div>
+
+<div class="settings">
+
+<h2>Augmentation Settings</h2>
+
+<label>
+
+Rotation
+
+<input type="range" id="rotation" min="0" max="90" value="40">
+
+<span id="rotationValue">40°</span>
+
+</label>
+
+<label>
+
+Zoom
+
+<input type="range" id="zoom" min="0" max="50" value="20">
+
+<span id="zoomValue">20%</span>
+
+</label>
+
+<label>
+
+Width Shift
+
+<input type="range" id="widthShift" min="0" max="50" value="20">
+
+<span id="widthShiftValue">20%</span>
+
+</label>
+
+<label>
+
+Height Shift
+
+<input type="range" id="heightShift" min="0" max="50" value="20">
+
+<span id="heightShiftValue">20%</span>
+
+</label>
+
+<label>
+
+Shear
+
+<input type="range" id="shear" min="0" max="50" value="20">
+
+<span id="shearValue">20%</span>
+
+</label>
+
+<label>
+
+<input type="checkbox" checked>
+
+Horizontal Flip
+
+</label>
+
+<label>
+
+Generate Images
+
+<input type="number" value="20">
+
+</label>
+
+<button id="generateBtn">
+
+🚀 Generate Images
+
+</button>
+
+</div>
+
+<h2>Generated Images</h2>
+
+<div class="gallery" id="gallery">
+
+</div>
+
+<button class="download">
+
+⬇ Download ZIP
+
+</button>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
