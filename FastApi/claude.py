@@ -11,7 +11,6 @@ client = Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
 
 
 # REQUEST | RESPONSE 
-
 class ChatRequest(BaseModel):
     message: str
     max_tokens: int = 200
@@ -40,8 +39,6 @@ def chat_strem(req:ChatRequest):
                 yield f"data: {text}\n\n"
         yield "data: [DONE]\n\n"    
 
-    return StreamingResponse(generate(), media_type="text/event-stream")
-                
-
+    return StreamingResponse(generate(), media_type="text/event-stream")            
 
 
